@@ -77,7 +77,7 @@ public class Database {
 		
 		
 		String sql = "SELECT * FROM Pallet";
-		String name = "cookies";
+		String name = "pallets";
 		return getterSQL(sql,name);
 	}
 
@@ -89,7 +89,7 @@ public class Database {
 		return "{}";
 	}
 	private String getterSQL(String sql, String name ) {
-		String querryResponse ="";
+		String querryResponse = "";
 		try {
 			PreparedStatement preStatement = connection.prepareStatement(sql);
 			querryResponse = Jsonizer.toJson(preStatement.executeQuery(),name);
