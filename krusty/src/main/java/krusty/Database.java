@@ -46,49 +46,39 @@ public class Database {
 		
 		
 		String sql = "SELECT * FROM Customer";
-		String customers = "";
+		String customers = "Customers";
 		
-		try {
-			PreparedStatement preStatement = connection.prepareStatement(sql);
-			customers = Jsonizer.toJson(preStatement.executeQuery(),"Customers");
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} 
-		
-		
-		return customers;
+		return getterSQL(sql,customers);
 	}
 
 	public String getRawMaterials(Request req, Response res) {
-		return "{}";
+		String sql = "SELECT * FROM Ingredient";
+		String name = "Raw Materials";
+		return getterSQL(sql,name);
 	}
 
 	public String getCookies(Request req, Response res) {
 		String sql = "SELECT * FROM Cookie";
-		String cookies = "";
-		
-		try {
-			PreparedStatement preStatement = connection.prepareStatement(sql);
-			cookies= Jsonizer.toJson(preStatement.executeQuery(),"Cookie");
-	
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		return cookies;
+		String name = "Cookies";
+		return getterSQL(sql,name);
 	}
+		
+		
 
 	public String getRecipes(Request req, Response res) {
-		return "{}";
+		
+		String sql = "SELECT * FROM Cookie";
+		String name = "Cookies";
+		return getterSQL(sql,name);
 	}
 
 	public String getPallets(Request req, Response res) {
 		
 		
 		
-		return "{\"pallets\":[]}";
+		String sql = "SELECT * FROM Cookie";
+		String name = "Cookies";
+		return getterSQL(sql,name);
 	}
 
 	public String reset(Request req, Response res) {
@@ -98,5 +88,19 @@ public class Database {
 	public String createPallet( Request req, Response res) {
 		return "{}";
 	}
+	private String getterSQL(String sql, String name ) {
 	
-}
+		try {
+			PreparedStatement preStatement = connection.prepareStatement(sql);
+			cookies= Jsonizer.toJson(preStatement.executeQuery(),name);
+	
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return cookies;
+	}
+		
+	}
+	
