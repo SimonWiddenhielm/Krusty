@@ -73,10 +73,30 @@ public class Database {
 	}
 
 	public String getPallets(Request req, Response res) {
+		String sql = "SELECT * FROM Pallet ";
 		
+		ArrayList<String> values = new ArrayList<String>();
 		
+		if (req.queryParams("from") != null) {
+		    sql += "where prodDate = ? ";
+		    values.add(req.queryParams("from"));
+		  }
 		
-		String sql = "SELECT * FROM Pallet";
+		if (req.queryParams("to") != null) {
+		    sql += ...;
+		    values.add(req.queryParams("from"));
+		}
+		
+		if (req.queryParams("cookie") != null) {
+		    sql += ...;
+		    values.add(req.queryParams("from"));
+		}
+		
+		if (req.queryParams("blocked") != null) {
+		    sql += ...;
+		    values.add(req.queryParams("from"));
+		}
+		
 		String name = "pallets";
 		return getterSQL(sql,name);
 	}
