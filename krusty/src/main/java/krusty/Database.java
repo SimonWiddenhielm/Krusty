@@ -53,7 +53,7 @@ public class Database {
 
 	public String getRawMaterials(Request req, Response res) {
 		String sql = "SELECT * FROM Ingredient";
-		String name = "Raw Materials";
+		String name = "RawMaterials";
 		return getterSQL(sql,name);
 	}
 
@@ -67,8 +67,8 @@ public class Database {
 
 	public String getRecipes(Request req, Response res) {
 		
-		String sql = "SELECT * FROM Cookie";
-		String name = "Cookies";
+		String sql = "SELECT * FROM";
+		String name = "";
 		return getterSQL(sql,name);
 	}
 
@@ -76,8 +76,8 @@ public class Database {
 		
 		
 		
-		String sql = "SELECT * FROM Cookie";
-		String name = "Cookies";
+		String sql = "SELECT * FROM Pallet";
+		String name = "cookies";
 		return getterSQL(sql,name);
 	}
 
@@ -89,18 +89,19 @@ public class Database {
 		return "{}";
 	}
 	private String getterSQL(String sql, String name ) {
-	
+		String querryResponse ="";
 		try {
 			PreparedStatement preStatement = connection.prepareStatement(sql);
-			cookies= Jsonizer.toJson(preStatement.executeQuery(),name);
+			querryResponse = Jsonizer.toJson(preStatement.executeQuery(),name);
 	
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
-		return cookies;
+		return querryReponse;
 	}
 		
 	}
 	
+
