@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.TreeMap;
@@ -73,19 +74,33 @@ public class Database {
 	}
 
 	public String getPallets(Request req, Response res) {
-		String sql = "SELECT * FROM Pallet ";
+		String sql = "SELECT * FROM pallets ";
 		
 		ArrayList<String> values = new ArrayList<String>();
 		
+		boolean firstParamFound = false;
+		
+		
+		
+		//denna funkar
 		if (req.queryParams("from") != null) {
-		    sql += "where prodDate = ? ";
+		    sql += "where prodDate >= ?";
 		    values.add(req.queryParams("from"));
+		    firstParamFound = true;
 		  }
 		
+		
+		
+		//men inte denna??
+		
 		if (req.queryParams("to") != null) {
-		    sql += ...;
-		    values.add(req.queryParams("from"));
+			if(firstParamFound) {
+				sql += " and ";
+			}
+		    sql += "where prodDate <= ?";
+		    values.add(req.queryParams("to"));
 		}
+		/*
 		
 		if (req.queryParams("cookie") != null) {
 		    sql += ...;
@@ -96,6 +111,19 @@ public class Database {
 		    sql += ...;
 		    values.add(req.queryParams("from"));
 		}
+		*/
+
+		  try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+		    for (int i = 0; i < values.size(); i++) {
+		      stmt.setString(i+1, values.get(i));
+		    }
+		    return Jsonizer.toJson(stmt.executeQuery(),"pallets");
+		    
+		    
+		  } catch (SQLException e) {
+			  e.printStackTrace();
+		  }
+		
 		
 		String name = "pallets";
 		return getterSQL(sql,name);
@@ -123,5 +151,3 @@ public class Database {
 	}
 		
 	}
-	
-
