@@ -1,27 +1,18 @@
-
 SET FOREIGN_KEY_CHECKS = 0; 
 
 TRUNCATE TABLE customers;
-
-Insert into customers (Company,adress)
-VALUES('Bjudkakor AB','Ystad' ),('Finkakor AB','Helsingborg' ),('GÃ¤stkakor AB','HÃ¤ssleholm' ),('KaffebrÃ¶d AB','Landskrona' )
-,('Kalaskakor AB','Trelleborg' ),('Partykakor AB','Kristianstad' ),('SkÃ¥nekakor AB','Perstorp' ),('SmÃ¥brÃ¶d AB','MalmÃ¶' );
-
-
+INSERT INTO customers (Company,adress)
+VALUES('Bjudkakor AB','Ystad' ),('Finkakor AB','Helsingborg' ),('Gästkakor AB','Hässleholm' ),('Kaffebröd AB','Landskrona' )
+,('Kalaskakor AB','Trelleborg' ),('Partykakor AB','Kristianstad' ),('Skånekakor AB','Perstorp' ),('Småbröd AB','Malmö' );
 
 
 TRUNCATE TABLE cookies;
-
-Insert into cookies (cookieName)
+INSERT INTO cookies (cookieName)
 VALUES('Almond delight' ),('Amneris' ),('Berliner' ),('Nut cookie' ),('Nut ring' ),('Tango');
 
 
-
-
-
 TRUNCATE TABLE inventory;
-
-Insert into inventory (ingredient,quantity,unit)
+INSERT INTO inventory (ingredient,quantity,unit)
 VALUES('Bread crumbs', 500000,'g'),('Butter', 500000,'g'),('Chocolate', 500000,'g'),('Chopped almonds', 500000,'g'),
 ('Cinnamon', 500000,'g'),('Egg whites', 500000,'g'),('Eggs', 500000,'g')
 ,('Fine-ground nuts', 500000,'g'),('Flour', 500000,'g'),('Ground, roasted nuts', 500000,'g'),('Icing sugar', 500000,'g'),('Marzipan', 500000,'g')
@@ -29,29 +20,27 @@ VALUES('Bread crumbs', 500000,'g'),('Butter', 500000,'g'),('Chocolate', 500000,'
 ,('Sodium bicarbonate', 500000,'g'),('Sugar', 500000,'g'),('Vanilla sugar', 500000,'g'),('Vanilla', 500000,'g'),('Wheat flour', 500000,'g');
 
 
-
-
-
-
 TRUNCATE TABLE recipes;
-
-insert into recipes (cookieName,ingredient,quantity,unit)
+INSERT INTO recipes (cookieName,ingredient,quantity,unit)
 VALUES((SELECT * from cookies where cookieName = 'Almond delight'),(SELECT ingredient from inventory where ingredient = 'Butter'),400,'g' ),
 ((SELECT * from cookies where cookieName = 'Almond delight'),(SELECT ingredient from inventory where ingredient = 'Chopped almonds'),279,'g' ),
 ((SELECT * from cookies where cookieName = 'Almond delight'),(SELECT ingredient from inventory where ingredient = 'Cinnamon'),10,'g' ),
 ((SELECT * from cookies where cookieName = 'Almond delight'),(SELECT ingredient from inventory where ingredient = 'Flour'),400,'g' ),
 ((SELECT * from cookies where cookieName = 'Almond delight'),(SELECT ingredient from inventory where ingredient = 'Sugar'),400,'g' ),
+
 ((SELECT * from cookies where cookieName = 'Amneris'),(SELECT ingredient from inventory where ingredient = 'Butter'),250,'g' ),
 ((SELECT * from cookies where cookieName = 'Amneris'),(SELECT ingredient from inventory where ingredient = 'Eggs'),50,'g' ),
 ((SELECT * from cookies where cookieName = 'Amneris'),(SELECT ingredient from inventory where ingredient = 'Marzipan'),750,'g' ),
 ((SELECT * from cookies where cookieName = 'Amneris'),(SELECT ingredient from inventory where ingredient = 'Potato starch'),25,'g' ),
 ((SELECT * from cookies where cookieName = 'Amneris'),(SELECT ingredient from inventory where ingredient = 'Wheat flour'),100,'g' ),
+
 ((SELECT * from cookies where cookieName = 'Berliner'),(SELECT ingredient from inventory where ingredient = 'Butter'),250,'g' ),
 ((SELECT * from cookies where cookieName = 'Berliner'),(SELECT ingredient from inventory where ingredient = 'Choclate'),50,'g' ), 
 ((SELECT * from cookies where cookieName = 'Berliner'),(SELECT ingredient from inventory where ingredient = 'Eggs'),50,'g' ), 
 ((SELECT * from cookies where cookieName = 'Berliner'),(SELECT ingredient from inventory where ingredient = 'Flour'),350,'g' ), 
 ((SELECT * from cookies where cookieName = 'Berliner'),(SELECT ingredient from inventory where ingredient = 'Icing sugar'),100,'g' ), 
 ((SELECT * from cookies where cookieName = 'Berliner'),(SELECT ingredient from inventory where ingredient = 'Vanilla sugar'),5,'g' ),
+
 ((SELECT * from cookies where cookieName = 'Nut cookie'),(SELECT ingredient from inventory where ingredient = 'Bread crumbs'),125,'g' ), 
 ((SELECT * from cookies where cookieName = 'Nut cookie'),(SELECT ingredient from inventory where ingredient = 'Chocolate'),50,'g' ), 
 ((SELECT * from cookies where cookieName = 'Nut cookie'),(SELECT ingredient from inventory where ingredient = 'Egg whites'),350,'g' ), 
@@ -72,8 +61,6 @@ VALUES((SELECT * from cookies where cookieName = 'Almond delight'),(SELECT ingre
 
 
 TRUNCATE TABLE cookieOrders;
-
-Truncate TABLE pallets;
+TRUNCATE TABLE pallets;
 
 SET FOREIGN_KEY_CHECKS = 1;
-
