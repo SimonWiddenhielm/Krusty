@@ -46,20 +46,20 @@ public class Database {
 	public String getCustomers(Request req, Response res) {
 		
 		
-		String sql = "SELECT * FROM Customer";
+		String sql = "SELECT * FROM customers";
 		String customers = "Customers";
 		
 		return getterSQL(sql,customers);
 	}
 
 	public String getRawMaterials(Request req, Response res) {
-		String sql = "SELECT * FROM Ingredient";
+		String sql = "SELECT * FROM inventory";
 		String name = "RawMaterials";
 		return getterSQL(sql,name);
 	}
 
 	public String getCookies(Request req, Response res) {
-		String sql = "SELECT * FROM Cookie";
+		String sql = "SELECT * FROM cookies";
 		String name = "Cookies";
 		return getterSQL(sql,name);
 	}
@@ -68,7 +68,7 @@ public class Database {
 
 	public String getRecipes(Request req, Response res) {
 		
-		String sql = "SELECT * FROM";
+		String sql = "SELECT * FROM recipes";
 		String name = "";
 		return getterSQL(sql,name);
 	}
@@ -82,7 +82,7 @@ public class Database {
 		
 		
 		
-		//denna funkar
+		
 		if (req.queryParams("from") != null) {
 		    sql += "where prodDate >= ?";
 		    values.add(req.queryParams("from"));
@@ -91,7 +91,7 @@ public class Database {
 		
 		
 		
-		//men inte denna??
+		
 		
 		if (req.queryParams("to") != null) {
 			if(firstParamFound) {
