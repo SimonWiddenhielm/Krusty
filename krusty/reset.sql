@@ -1,6 +1,4 @@
 
-
-
 SET FOREIGN_KEY_CHECKS = 0; 
 
 TRUNCATE TABLE customers;
@@ -43,20 +41,17 @@ VALUES((SELECT * from cookies where cookieName = 'Almond delight'),(SELECT ingre
 ((SELECT * from cookies where cookieName = 'Almond delight'),(SELECT ingredient from inventory where ingredient = 'Cinnamon'),10,'g' ),
 ((SELECT * from cookies where cookieName = 'Almond delight'),(SELECT ingredient from inventory where ingredient = 'Flour'),400,'g' ),
 ((SELECT * from cookies where cookieName = 'Almond delight'),(SELECT ingredient from inventory where ingredient = 'Sugar'),400,'g' ),
-
 ((SELECT * from cookies where cookieName = 'Amneris'),(SELECT ingredient from inventory where ingredient = 'Butter'),250,'g' ),
-((SELECT * from cookies where cookieName = 'Amneris'),(SELECT ingredient from inventory where ingredient = 'Eggs'),50,'g' ), 
-((SELECT * from cookies where cookieName = 'Amneris'),(SELECT ingredient from inventory where ingredient = 'Maripan'),750,'g' ), 
-((SELECT * from cookies where cookieName = 'Amneris'),(SELECT ingredient from inventory where ingredient = 'Potato starch'),,'g' ), 
-((SELECT * from cookies where cookieName = 'Amneris'),(SELECT ingredient from inventory where ingredient = 'Wheat flour'),100,'g' ), 
-
+((SELECT * from cookies where cookieName = 'Amneris'),(SELECT ingredient from inventory where ingredient = 'Eggs'),50,'g' ),
+((SELECT * from cookies where cookieName = 'Amneris'),(SELECT ingredient from inventory where ingredient = 'Marzipan'),750,'g' ),
+((SELECT * from cookies where cookieName = 'Amneris'),(SELECT ingredient from inventory where ingredient = 'Potato starch'),25,'g' ),
+((SELECT * from cookies where cookieName = 'Amneris'),(SELECT ingredient from inventory where ingredient = 'Wheat flour'),100,'g' ),
 ((SELECT * from cookies where cookieName = 'Berliner'),(SELECT ingredient from inventory where ingredient = 'Butter'),250,'g' ),
 ((SELECT * from cookies where cookieName = 'Berliner'),(SELECT ingredient from inventory where ingredient = 'Choclate'),50,'g' ), 
 ((SELECT * from cookies where cookieName = 'Berliner'),(SELECT ingredient from inventory where ingredient = 'Eggs'),50,'g' ), 
 ((SELECT * from cookies where cookieName = 'Berliner'),(SELECT ingredient from inventory where ingredient = 'Flour'),350,'g' ), 
 ((SELECT * from cookies where cookieName = 'Berliner'),(SELECT ingredient from inventory where ingredient = 'Icing sugar'),100,'g' ), 
-((SELECT * from cookies where cookieName = 'Berliner'),(SELECT ingredient from inventory where ingredient = 'Vanilla sugar'),5,'g' ), 
-
+((SELECT * from cookies where cookieName = 'Berliner'),(SELECT ingredient from inventory where ingredient = 'Vanilla sugar'),5,'g' ),
 ((SELECT * from cookies where cookieName = 'Nut cookie'),(SELECT ingredient from inventory where ingredient = 'Bread crumbs'),125,'g' ), 
 ((SELECT * from cookies where cookieName = 'Nut cookie'),(SELECT ingredient from inventory where ingredient = 'Chocolate'),50,'g' ), 
 ((SELECT * from cookies where cookieName = 'Nut cookie'),(SELECT ingredient from inventory where ingredient = 'Egg whites'),350,'g' ), 
@@ -73,7 +68,7 @@ VALUES((SELECT * from cookies where cookieName = 'Almond delight'),(SELECT ingre
 ((SELECT * from cookies where cookieName = 'Tango'),(SELECT ingredient from inventory where ingredient = 'Flour'),300,'g' ), 
 ((SELECT * from cookies where cookieName = 'Tango'),(SELECT ingredient from inventory where ingredient = 'Sodium bicarbonate'),4,'g' ), 
 ((SELECT * from cookies where cookieName = 'Tango'),(SELECT ingredient from inventory where ingredient = 'Sugar'),250,'g' ), 
-((SELECT * from cookies where cookieName = 'Tango'),(SELECT ingredient from inventory where ingredient = 'Vanilla'),2,'g' ), 
+((SELECT * from cookies where cookieName = 'Tango'),(SELECT ingredient from inventory where ingredient = 'Vanilla'),2,'g' );
 
 
 TRUNCATE TABLE cookieOrders;
