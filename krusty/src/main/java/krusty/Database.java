@@ -96,19 +96,33 @@ public class Database {
 		if (req.queryParams("to") != null) {
 			if(firstParamFound) {
 				sql += " and ";
+			} else {
+				sql += " where ";
 			}
-		    sql += "where prodDate <= ?";
+		    sql += "prodDate <=?";
 		    values.add(req.queryParams("to"));
 		}
-		/*
+		
 		
 		if (req.queryParams("cookie") != null) {
-		    sql += ...;
-		    values.add(req.queryParams("from"));
+			if(firstParamFound) {
+				sql += " and ";
+			} else {
+				sql += " where ";
+			}
+			sql += "cookieName = ?";
+			System.out.println(sql);
+		    values.add(req.queryParams("cookie"));
 		}
-		
+		//kvar att fixa
+		/*
 		if (req.queryParams("blocked") != null) {
-		    sql += ...;
+			if(firstParamFound) {
+				sql += " and ";
+			} else {
+				sql += " where ";
+			}
+			sql += "blocked = 1";
 		    values.add(req.queryParams("from"));
 		}
 		*/
@@ -128,7 +142,8 @@ public class Database {
 		String name = "pallets";
 		return getterSQL(sql,name);
 	}
-
+	
+	
 	public String reset(Request req, Response res) {
 		String response = "{\n\"status\": \"error\"\n}";
 		
