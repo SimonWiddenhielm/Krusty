@@ -1,31 +1,28 @@
 
 
 
-
-
-
 SET FOREIGN_KEY_CHECKS = 0; 
+
 TRUNCATE TABLE customers;
-SET FOREIGN_KEY_CHECKS = 1;
+
 Insert into customers (Company,adress)
-VALUES('Bjudkakor AB','Ystad' ),('Finkakor AB','Helsingborg' ),('Gästkakor AB','Hässleholm' ),('Kaffebröd AB','Landskrona' )
-,('Kalaskakor AB','Trelleborg' ),('Partykakor AB','Kristianstad' ),('Skånekakor AB','Perstorp' ),('Småbröd AB','Malmö' );
+VALUES('Bjudkakor AB','Ystad' ),('Finkakor AB','Helsingborg' ),('GÃ¤stkakor AB','HÃ¤ssleholm' ),('KaffebrÃ¶d AB','Landskrona' )
+,('Kalaskakor AB','Trelleborg' ),('Partykakor AB','Kristianstad' ),('SkÃ¥nekakor AB','Perstorp' ),('SmÃ¥brÃ¶d AB','MalmÃ¶' );
 
 
 
 
-SET FOREIGN_KEY_CHECKS = 0; 
 TRUNCATE TABLE cookies;
-SET FOREIGN_KEY_CHECKS = 1;
+
 Insert into cookies (cookieName)
 VALUES('Almond delight' ),('Amneris' ),('Berliner' ),('Nut cookie' ),('Nut ring' ),('Tango');
 
 
 
 
-SET FOREIGN_KEY_CHECKS = 0; 
+
 TRUNCATE TABLE inventory;
-SET FOREIGN_KEY_CHECKS = 1;
+
 Insert into inventory (ingredient,quantity,unit)
 VALUES('Bread crumbs', 500000,'g'),('Butter', 500000,'g'),('Chocolate', 500000,'g'),('Chopped almonds', 500000,'g'),
 ('Cinnamon', 500000,'g'),('Egg whites', 500000,'g'),('Eggs', 500000,'g')
@@ -33,7 +30,6 @@ VALUES('Bread crumbs', 500000,'g'),('Butter', 500000,'g'),('Chocolate', 500000,'
 ,('Potato starch', 500000,'g'),('Roasted, chopped nuts', 500000,'g')
 ,('Sodium bicarbonate', 500000,'g'),('Sugar', 500000,'g'),('Vanilla sugar', 500000,'g'),('Vanilla', 500000,'g'),('Wheat flour', 500000,'g');
 
-SET FOREIGN_KEY_CHECKS = 0; 
 
 
 
@@ -79,10 +75,10 @@ VALUES((SELECT * from cookies where cookieName = 'Almond delight'),(SELECT ingre
 ((SELECT * from cookies where cookieName = 'Tango'),(SELECT ingredient from inventory where ingredient = 'Sugar'),250,'g' ), 
 ((SELECT * from cookies where cookieName = 'Tango'),(SELECT ingredient from inventory where ingredient = 'Vanilla'),2,'g' ), 
 
-SET FOREIGN_KEY_CHECKS = 0; 
+
 TRUNCATE TABLE cookieOrders;
-SET FOREIGN_KEY_CHECKS = 1;
+
 Truncate TABLE pallets;
 
-
+SET FOREIGN_KEY_CHECKS = 1;
 
