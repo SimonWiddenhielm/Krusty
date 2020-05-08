@@ -43,7 +43,7 @@ VALUES((SELECT * from cookies where cookieName = 'Almond delight'),(SELECT ingre
 
 ((SELECT * from cookies where cookieName = 'Nut cookie'),(SELECT ingredient from inventory where ingredient = 'Bread crumbs'),125,'g' ), 
 ((SELECT * from cookies where cookieName = 'Nut cookie'),(SELECT ingredient from inventory where ingredient = 'Chocolate'),50,'g' ), 
-((SELECT * from cookies where cookieName = 'Nut cookie'),(SELECT ingredient from inventory where ingredient = 'Egg whites'),350,'g' ), 
+((SELECT * from cookies where cookieName = 'Nut cookie'),(SELECT ingredient from inventory where ingredient = 'Egg whites'),350,'ml' ), 
 ((SELECT * from cookies where cookieName = 'Nut cookie'),(SELECT ingredient from inventory where ingredient = 'Fine-ground nuts'),750,'g' ), 
 ((SELECT * from cookies where cookieName = 'Nut cookie'),(SELECT ingredient from inventory where ingredient = 'Ground, roasted nuts'),625,'g' ), 
 ((SELECT * from cookies where cookieName = 'Nut cookie'),(SELECT ingredient from inventory where ingredient = 'Sugar'),375,'g' ), 
