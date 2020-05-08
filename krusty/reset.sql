@@ -14,7 +14,7 @@ VALUES('Almond delight' ),('Amneris' ),('Berliner' ),('Nut cookie' ),('Nut ring'
 TRUNCATE TABLE inventory;
 INSERT INTO inventory (ingredient,quantity,unit)
 VALUES('Bread crumbs', 500000,'g'),('Butter', 500000,'g'),('Chocolate', 500000,'g'),('Chopped almonds', 500000,'g'),
-('Cinnamon', 500000,'g'),('Egg whites', 500000,'g'),('Eggs', 500000,'g')
+('Cinnamon', 500000,'g'),('Egg whites', 500000,'ml'),('Eggs', 500000,'g')
 ,('Fine-ground nuts', 500000,'g'),('Flour', 500000,'g'),('Ground, roasted nuts', 500000,'g'),('Icing sugar', 500000,'g'),('Marzipan', 500000,'g')
 ,('Potato starch', 500000,'g'),('Roasted, chopped nuts', 500000,'g')
 ,('Sodium bicarbonate', 500000,'g'),('Sugar', 500000,'g'),('Vanilla sugar', 500000,'g'),('Vanilla', 500000,'g'),('Wheat flour', 500000,'g');
@@ -35,7 +35,7 @@ VALUES((SELECT * from cookies where cookieName = 'Almond delight'),(SELECT ingre
 ((SELECT * from cookies where cookieName = 'Amneris'),(SELECT ingredient from inventory where ingredient = 'Wheat flour'),100,'g' ),
 
 ((SELECT * from cookies where cookieName = 'Berliner'),(SELECT ingredient from inventory where ingredient = 'Butter'),250,'g' ),
-((SELECT * from cookies where cookieName = 'Berliner'),(SELECT ingredient from inventory where ingredient = 'Choclate'),50,'g' ), 
+((SELECT * from cookies where cookieName = 'Berliner'),(SELECT ingredient from inventory where ingredient = 'Chocolate'),50,'g' ), 
 ((SELECT * from cookies where cookieName = 'Berliner'),(SELECT ingredient from inventory where ingredient = 'Eggs'),50,'g' ), 
 ((SELECT * from cookies where cookieName = 'Berliner'),(SELECT ingredient from inventory where ingredient = 'Flour'),350,'g' ), 
 ((SELECT * from cookies where cookieName = 'Berliner'),(SELECT ingredient from inventory where ingredient = 'Icing sugar'),100,'g' ), 
