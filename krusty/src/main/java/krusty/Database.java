@@ -72,45 +72,72 @@ public class Database {
 
 
 	public String getPallets(Request req, Response res) {
-		String sql = "SELECT * FROM pallets ";
+		
+		String drop = "drop view if  exists palletsView";
+		String create = "create view palletsView as SELECT *, IF(blocked, 'yes', 'no') AS block FROM pallets ";
+		
+		String sql = "SELECT * FROM palletsView ";
 		ArrayList<String> values = new ArrayList<String>();
 		boolean firstParamFound = false;
 
-		//denna funkar
 		if (req.queryParams("from") != null) {
 			sql += "where prodDate >= ?";
 			values.add(req.queryParams("from"));
 			firstParamFound = true;
 		}
 
-
-
-		//men inte denna??
-
+		
+		
 		if (req.queryParams("to") != null) {
 			if(firstParamFound) {
 				sql += " and ";
+			} else {
+				sql +=  " where ";
 			}
-			sql += "where prodDate <= ?";
+			sql += "prodDate <=?";
 			values.add(req.queryParams("to"));
+			
+			firstParamFound = true;
 		}
-		/*
+		
 
 		if (req.queryParams("cookie") != null) {
-		    sql += ...;
-		    values.add(req.queryParams("from"));
+			if(firstParamFound) {
+				sql += " and ";
+			} else {
+				sql +=  "where ";
+			}
+			sql += "cookieName = ?";
+		    values.add(req.queryParams("cookie"));
+		    
+		    System.out.println(sql);
+		    
+		    firstParamFound = true;
 		}
+		
+		
 
 		if (req.queryParams("blocked") != null) {
-		    sql += ...;
-		    values.add(req.queryParams("from"));
+			if(firstParamFound) {
+				sql += " and ";
+			} else {
+				sql +=  "where ";
+			}
+			sql += "block =?";
+			values.add(req.queryParams("blocked"));
 		}
-		 */
-
-		try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+		
+		
+		try  {
+			connection.setAutoCommit(false);
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			PreparedStatement stmt1 = connection.prepareStatement(drop);
+			PreparedStatement stmt2 = connection.prepareStatement(create);
 			for (int i = 0; i < values.size(); i++) {
 				stmt.setString(i+1, values.get(i));
 			}
+			stmt1.executeUpdate();
+			stmt2.executeUpdate();
 			return Jsonizer.toJson(stmt.executeQuery(),"pallets");
 
 
@@ -119,9 +146,9 @@ public class Database {
 		}
 
 
-		String name = "pallets";
-		return getterSQL(sql,name);
+		return "";
 	}
+
 
 	public String reset(Request req, Response res) {
 		String response = "{\n\"status\": \"error\"\n}";
