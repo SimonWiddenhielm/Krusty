@@ -26,13 +26,13 @@ VALUES((SELECT * from cookies where cookieName = 'Almond delight'),(SELECT ingre
 ((SELECT * from cookies where cookieName = 'Almond delight'),(SELECT ingredient from inventory where ingredient = 'Chopped almonds'),279,'g' ),
 ((SELECT * from cookies where cookieName = 'Almond delight'),(SELECT ingredient from inventory where ingredient = 'Cinnamon'),10,'g' ),
 ((SELECT * from cookies where cookieName = 'Almond delight'),(SELECT ingredient from inventory where ingredient = 'Flour'),400,'g' ),
-((SELECT * from cookies where cookieName = 'Almond delight'),(SELECT ingredient from inventory where ingredient = 'Sugar'),400,'g' ),
+((SELECT * from cookies where cookieName = 'Almond delight'),(SELECT ingredient from inventory where ingredient = 'Sugar'),270,'g' ),
 
 ((SELECT * from cookies where cookieName = 'Amneris'),(SELECT ingredient from inventory where ingredient = 'Butter'),250,'g' ),
-((SELECT * from cookies where cookieName = 'Amneris'),(SELECT ingredient from inventory where ingredient = 'Eggs'),50,'g' ),
+((SELECT * from cookies where cookieName = 'Amneris'),(SELECT ingredient from inventory where ingredient = 'Eggs'),250,'g' ),
 ((SELECT * from cookies where cookieName = 'Amneris'),(SELECT ingredient from inventory where ingredient = 'Marzipan'),750,'g' ),
 ((SELECT * from cookies where cookieName = 'Amneris'),(SELECT ingredient from inventory where ingredient = 'Potato starch'),25,'g' ),
-((SELECT * from cookies where cookieName = 'Amneris'),(SELECT ingredient from inventory where ingredient = 'Wheat flour'),100,'g' ),
+((SELECT * from cookies where cookieName = 'Amneris'),(SELECT ingredient from inventory where ingredient = 'Wheat flour'),25,'g' ),
 
 ((SELECT * from cookies where cookieName = 'Berliner'),(SELECT ingredient from inventory where ingredient = 'Butter'),250,'g' ),
 ((SELECT * from cookies where cookieName = 'Berliner'),(SELECT ingredient from inventory where ingredient = 'Chocolate'),50,'g' ), 
