@@ -77,7 +77,7 @@ public class Database {
 		String drop = "drop view if  exists palletsView";
 		String create = "create view palletsView as SELECT *, IF(blocked, 'yes', 'no') AS block FROM pallets ";
 		
-		String sql = "SELECT cookieName, block as blocked FROM palletsView ";
+		String sql = "SELECT cookieName as cookie, block as blocked FROM palletsView ";
 		ArrayList<String> values = new ArrayList<String>();
 		boolean firstParamFound = false;
 
@@ -183,7 +183,7 @@ public class Database {
 				return "{\n\"status\": \"unknown cookie\"\n}";
 			}
 				
-			//kolla om råvaror finns
+			//kolla om rÃ¥varor finns
 			Map<String, Integer> recipe = getRecipe(cookieName);
 			Map<String, Integer> inventory = getInventory();
 			
@@ -195,7 +195,7 @@ public class Database {
 			    }
 			}
 			
-			//subtrahera från råvaror
+			//subtrahera frÃ¥n rÃ¥varor
 			for (Map.Entry<String, Integer> entry : recipe.entrySet()) {
 				String ingredient = entry.getKey();
 				int quantity = entry.getValue() * 54;
