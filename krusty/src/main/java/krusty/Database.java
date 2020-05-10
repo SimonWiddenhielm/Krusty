@@ -130,7 +130,6 @@ public class Database {
 		
 		
 		try  {
-			connection.setAutoCommit(false);
 			PreparedStatement stmt = connection.prepareStatement(sql);
 			PreparedStatement stmt1 = connection.prepareStatement(drop);
 			PreparedStatement stmt2 = connection.prepareStatement(create);
