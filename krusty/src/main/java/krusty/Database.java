@@ -77,7 +77,7 @@ public class Database {
 		String drop = "drop view if  exists palletsView";
 		String create = "create view palletsView as SELECT *, IF(blocked, 'yes', 'no') AS block FROM pallets ";
 		
-		String sql = "SELECT * FROM palletsView ";
+		String sql = "SELECT cookieName, block as blocked FROM palletsView ";
 		ArrayList<String> values = new ArrayList<String>();
 		boolean firstParamFound = false;
 
