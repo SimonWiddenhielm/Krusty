@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 import com.mysql.jdbc.Driver;
@@ -180,16 +181,42 @@ public class Database {
 			stmt.setString(1, cookieName);
 			ResultSet rs = stmt.executeQuery();
 			if(rs.next() == false) {
-				response = "{\n\"status\": \"unknown cookie\"\n}";
-			} else {
-				cookieSQL = "INSERT INTO pallets(cookieName, prodDate) "
-						+ "VALUES ((SELECT cookieName FROM cookies WHERE cookieName = ?), now())";
-				stmt = connection.prepareStatement(cookieSQL);
-				stmt.setString(1, cookieName);
-				if(stmt.executeUpdate() == 1) {
-					response = "{\n\"status\": \"ok\"\n}";
-				}
-
+				return "{\n\"status\": \"unknown cookie\"\n}";
+			}
+				
+			//kolla om råvaror finns
+			Map<String, Integer> recipe = getRecipe(cookieName);
+			Map<String, Integer> inventory = getInventory();
+			
+			for (Map.Entry<String, Integer> entry : recipe.entrySet()) {
+			    String recipeIngredient = entry.getKey();
+			    int recipeQuantity = entry.getValue() * 54;
+			    if(recipeQuantity > inventory.get(recipeIngredient)) {
+			    	return "{\n\"status\": \"not enough materials\"\n}";
+			    }
+			}
+			
+			//subtrahera från råvaror
+			for (Map.Entry<String, Integer> entry : recipe.entrySet()) {
+				String ingredient = entry.getKey();
+				int quantity = entry.getValue() * 54;
+				String subtractMaterialsSQL = 
+						"UPDATE inventory "
+						+ "SET quantity = (quantity - ?)"
+						+ "WHERE ingredient = ?";
+				stmt = connection.prepareStatement(subtractMaterialsSQL);
+				stmt.setInt(1, quantity);
+				stmt.setString(2, ingredient);
+				stmt.executeUpdate();
+			}
+			
+			//skapa pallet
+			cookieSQL = "INSERT INTO pallets(cookieName, prodDate) "
+					+ "VALUES ((SELECT cookieName FROM cookies WHERE cookieName = ?), now())";
+			stmt = connection.prepareStatement(cookieSQL);
+			stmt.setString(1, cookieName);
+			if(stmt.executeUpdate() == 1) {
+				response = "{\n\"status\": \"ok\"\n}";
 			}
 
 
@@ -210,5 +237,37 @@ public class Database {
 		}
 
 		return querryResponse;
+	}
+	
+		private Map<String, Integer> getRecipe(String cookieName) throws SQLException{
+		Map <String, Integer> recipe = new HashMap<String, Integer>();
+		String sql = "SELECT ingredient, quantity FROM recipes WHERE cookieName = ?";
+		try {
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			stmt.setString(1, cookieName);
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+                recipe.put(rs.getString("ingredient"), rs.getInt("quantity"));
+            }
+		} catch (SQLException e) {
+			System.err.println("Failed to execute getRecipe. The error is "+ e.getMessage());
+		}
+		
+		return recipe;
+	}
+	
+	private Map<String, Integer> getInventory() throws SQLException{
+		Map <String, Integer> inventory = new HashMap<String, Integer>();
+		String sql = "SELECT ingredient, quantity FROM inventory";
+		try {
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+                inventory.put(rs.getString("ingredient"), rs.getInt("quantity"));
+            }
+		} catch (SQLException e) {
+			System.err.println("Failed to execute getRecipe. The error is "+ e.getMessage());
+		}
+		return inventory;
 	}
 }
