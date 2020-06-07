@@ -66,7 +66,7 @@ public class Database {
 
 
 	public String getRecipes(Request req, Response res) {
-		String sql = "SELECT * FROM";
+		String sql = "SELECT * FROM recipes";
 		String name = "";
 		return getterSQL(sql,name);
 	}
