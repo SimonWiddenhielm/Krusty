@@ -66,7 +66,7 @@ public class Database {
 
 
 	public String getRecipes(Request req, Response res) {
-		String sql = "SELECT cookieName as cookie,ingredient as raw_material,quantity as amount,unit from recipes";
+		String sql = "SELECT cookieName as cookie,ingredient as raw_material,quantity as amount,unit FROM RECIPES";
 		String name = "";
 		return getterSQL(sql,name);
 	}
